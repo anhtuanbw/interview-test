@@ -19,7 +19,7 @@ from playwright.sync_api import sync_playwright
 @pytest.fixture(scope="session")
 def browser():
     with sync_playwright() as p:
-        browser = p.chromium.connect_over_cdp("http://localhost:9222")  # Set to True for headless mode
+        browser = p.chromium.connect_over_cdp("http://localhost:9222") 
         yield browser
         browser.close()
 

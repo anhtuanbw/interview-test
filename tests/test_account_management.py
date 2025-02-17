@@ -47,6 +47,8 @@ def click_login_button(login_page):
 
 @then("the user should be redirected to the account dashboard")
 def verify_post_login_redirect(page):
+    import time
+    time.sleep(10)
     assert "account/home" in page.url
 
 
