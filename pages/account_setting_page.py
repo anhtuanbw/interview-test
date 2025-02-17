@@ -25,11 +25,9 @@ class AccountSettingPage(BasePage):
     
     def input_last_name(self, last_name):
         # Clear text
-        self.last_name_input.clear()
         self.last_name_input.fill(last_name)
 
     def input_mobile_number(self, mobile):
-        self.mobile_input.clear()
         self.mobile_input.fill(mobile)
 
     def click_update(self):
