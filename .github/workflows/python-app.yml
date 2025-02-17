@@ -1,0 +1,39 @@
+name: Run the tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      BASE_URL:
+        description: 'Base URL for the tests'
+        required: true
+        default: 'https://www.myer.com.au'
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r requirements.txt
+        playwright install
+
+    - name: Run tests
+      env:
+        BASE_URL: ${{ github.event.inputs.BASE_URL || 'https://www.myer.com.au' }}
+      run: |
+        source venv/bin/activate
+        pytest --headed
