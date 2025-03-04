@@ -6,7 +6,7 @@ on:
       BASE_URL:
         description: 'Base URL for the tests'
         required: true
-        default: 'https://www.myer.com.au'
+        default: 'https://magento.softwaretestingboard.com/'
   schedule:
     - cron: '0 0 * * *'  # Runs daily at midnight
 
@@ -31,10 +31,6 @@ jobs:
         pip install -r requirements.txt
         playwright install chrome
 
-    - name: Start Chrome in debug mode
-      run: |
-        google-chrome --user-data-dir=/tmp/chrome-user-data --remote-debugging-port=9222 --window-size=1280,720 --headless &
-      shell: bash
 
     - name: Run tests
       env:

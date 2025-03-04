@@ -1,27 +1,35 @@
-# Myer Account Management - Login and Profile Update
+# Automation
 
 This project is a test automation suite for Myer Account Management, focusing on login and profile update functionalities using Playwright and pytest-bdd.
 
 ## Project Structure
 ```
 ├── features
-│   └── myer_account_management.feature
+│   └── order_items.feature
 ├── pages
 │   ├── __init__.py
 │   ├── base_page.py
 │   ├── login_page.py
 │   ├── home_page.py
-│   ├── my_account_page.py
-│   ├── account_setting_page.py
-│   └── update_password_page.py
+│   ├── product_search_page.py
+│   ├── product_detail_page.py
+│   ├── cart_page.py
+│   ├── order_summary_page.py
+│   └── my_orders_page.py
 ├── tests
 │   ├── __init__.py
 │   ├── conftest.py
-│   ├── test_account_management.py
-│   └── test_login.py
+│   └── test_order_items.py
+├── utils
+│   ├── __init__.py
+│   ├── list_utils.py
+├── .github
+│   └── workflows
+│       └── daily-test.yml
 ├── .gitignore
 ├── requirements.txt
 └── README.md
+
 ```
 
 ## Installation
@@ -73,24 +81,9 @@ This project is a test automation suite for Myer Account Management, focusing on
 2. Follow the same installation steps as above.
 
 
-## Notes
-
-The production website `www.myer.com.au` has mechanisms in place to prevent automated testing. To bypass these restrictions, I employ a workaround by running Chrome in debug mode and connecting Playwright to that instance. This setup allows us to circumvent the blocking measures effectively.
-
 ## Usage
 
-1. Start the Chrome browser in development mode with remote debugging:
-
-    - Window 
-    ```sh
-    start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --user-data-dir=C:\path\data --remote-debugging-port=9222
-    ```
-    - Mac and Ubuntu
-    ```
-    google-chrome --user-data-dir=/path/to/data --remote-debugging-port=9222
-    ```
-
-2. Run the tests:
+### Run the tests:
     ```sh
     pytest --headed
     ```
@@ -104,7 +97,7 @@ pytest
 
 You can also run specific tests by specifying the test file:
 ```sh
-pytest tests/test_login.py
+pytest tests/test_order_items.py
 ```
 
 ## Project Features
@@ -119,7 +112,7 @@ pytest tests/test_login.py
 
 ### Feature File
 
-The feature file `myer_account_management.feature` contains the scenarios for testing the Myer Account Management functionalities.
+The feature file `order_items.feature` contains the scenarios for testing the Myer Account Management functionalities.
 
 ### Page Objects
 
@@ -127,11 +120,3 @@ The pages directory contains the Page Object Model (POM) classes for different p
 - `base_page.py`: Base class for all page objects.
 - `login_page.py`: Page object for the login page.
 - `home_page.py`: Page object for the home page.
-- `my_account_page.py`: Page object for the My Account page.
-- `account_setting_page.py`: Page object for the Account Settings page.
-- `update_password_page.py`: Page object for the Update Password page.
-
-
-
-## Notes
-- The Production website `www.myer.com.au` has some mechanism to prevent the automation test. So we need to do an workaround solution that run the Chrome on debug mode and connect playwright to that instance. With that setup we can work arund the block
